@@ -1,0 +1,1 @@
+Can you use a json powered storage system instead of using local storage? If yes provide me the code snippets for that including the changes. Then add a theme toggle button and provide me the changes alone

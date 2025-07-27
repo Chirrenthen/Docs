@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chathur Traders - Premium Spice Trading</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-pepper-hot"></i>
+                <h1>Chathur <span>Traders</span></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="nav-link active" data-target="dashboard">Dashboard</a></li>
+                    <li><a href="#" class="nav-link" data-target="inventory">Inventory</a></li>
+                    <li><a href="#" class="nav-link" data-target="billing">Billing</a></li>
+                    <li><a href="#" class="nav-link" data-target="payments">Payments</a></li>
+                    <li><a href="#" class="nav-link" data-target="bills">Bills</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="section active">
+            <div class="dashboard">
+                <div class="card slide-in" style="animation-delay: 0.1s;">
+                    <i class="fas fa-boxes"></i>
+                    <h3>Total Products</h3>
+                    <p id="total-products">0</p>
+                </div>
+                <div class="card slide-in" style="animation-delay: 0.2s;">
+                    <i class="fas fa-receipt"></i>
+                    <h3>Monthly Sales</h3>
+                    <p>₹<span id="monthly-sales">0</span></p>
+                </div>
+                <div class="card slide-in" style="animation-delay: 0.3s;">
+                    <i class="fas fa-rupee-sign"></i>
+                    <h3>Pending Payments</h3>
+                    <p>₹<span id="pending-payments">0</span></p>
+                </div>
+            </div>
+
+            <div class="section-header">
+                <h2>Recent Transactions</h2>
+                <button class="btn" id="view-all-bills"><i class="fas fa-list"></i> View All</button>
+            </div>
+            
+            <div class="table-container">
+                <table id="recent-transactions">
+                    <thead>
+                        <tr>
+                            <th>Bill No.</th>
+                            <th>Customer</th>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Filled by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Inventory Management Section -->
+        <section id="inventory" class="section">
+            <div class="section-header">
+                <h2>Inventory Management</h2>
+                <button class="btn" id="add-product-btn"><i class="fas fa-plus"></i> Add New Stock</button>
+            </div>
+            
+            <div id="product-form" class="form-grid" style="display: none; margin-top: 20px; background: var(--light); padding: 20px; border-radius: var(--border-radius);">
+                <div class="form-group">
+                    <label for="product-name">Product Name *</label>
+                    <input type="text" id="product-name" placeholder="e.g., Cardamom Pods" required>
+                </div>
+                <div class="form-group">
+                    <label for="product-quantity">Quantity *</label>
+                    <input type="number" id="product-quantity" placeholder="Enter quantity" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="product-unit">Unit *</label>
+                    <select id="product-unit" required>
+                        <option value="KG" selected>Kilograms (KG)</option>
+                        <option value="G">Grams (G)</option>
+                        <option value="Boxes">Boxes</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="buying-rate">Buying Rate (₹ per unit) *</label>
+                    <input type="number" id="buying-rate" placeholder="Enter buying rate" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="selling-rate">Selling Rate (₹ per unit)</label>
+                    <input type="number" id="selling-rate" placeholder="Enter selling rate" step="0.01">
+                </div>
+                <div class="form-group">
+                    <label for="product-description">Description</label>
+                    <textarea id="product-description" placeholder="Product details, quality notes, etc." rows="2"></textarea>
+                </div>
+                <div class="form-group" style="grid-column: 1 / -1; display: flex; gap: 10px; margin-top: 10px;">
+                    <button class="btn" id="save-product"><i class="fas fa-save"></i> Save Product</button>
+                    <button class="btn btn-danger" id="cancel-product"><i class="fas fa-times"></i> Cancel</button>
+                </div>
+            </div>
+            
+            <div class="table-container">
+                <table id="inventory-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Product Name</th>
+                            <th>Description</th>
+                            <th>Stock</th>
+                            <th>Buying Rate (₹)</th>
+                            <th>Selling Rate (₹)</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="inventory-body">
+                        <!-- Filled by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Billing Section -->
+        <section id="billing" class="section">
+            <div class="section-header">
+                <h2>Create New Bill</h2>
+            </div>
+            
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="customer-name">Company Name *</label>
+                    <input type="text" id="customer-name" placeholder="Enter company name" required>
+                </div>
+                <div class="form-group">
+                    <label for="bill-date">Bill Date *</label>
+                    <input type="date" id="bill-date" required>
+                </div>
+            </div>
+            
+            <div class="section-header">
+                <h3>Add Products</h3>
+                <button class="btn" id="add-product-bill"><i class="fas fa-plus"></i> Add Product</button>
+            </div>
+            
+            <div class="table-container">
+                <table id="bill-items">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Description</th>
+                            <th>Available</th>
+                            <th>Quantity</th>
+                            <th>Unit</th>
+                            <th>Rate (₹)</th>
+                            <th>Total (₹)</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bill-items-body">
+                        <!-- Filled by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <div style="display: flex; justify-content: flex-end; margin-top: 20px;">
+                <div style="text-align: right; width: 100%; max-width: 400px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                        <strong>Subtotal:</strong>
+                        <span id="subtotal">₹0.00</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #ddd;">
+                        <strong>Discount:</strong>
+                        <span id="discount">₹0.00</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 1.2rem; font-weight: bold;">
+                        <strong>Total:</strong>
+                        <span id="total-amount">₹0.00</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="amount-paid">Amount Paid (₹)</label>
+                        <input type="number" id="amount-paid" placeholder="Enter paid amount" step="0.01" value="0">
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-top: 10px; font-weight: bold; color: var(--danger);">
+                        <strong>Pending:</strong>
+                        <span id="pending-amount">₹0.00</span>
+                    </div>
+                    <button class="btn btn-success" style="width: 100%; margin-top: 20px;" id="generate-bill"><i class="fas fa-file-invoice"></i> Generate Bill</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Payments Section -->
+        <section id="payments" class="section">
+            <div class="section-header">
+                <h2>Payment Tracking</h2>
+                <button class="btn" id="export-payments"><i class="fas fa-file-export"></i> Export Report</button>
+            </div>
+            
+            <div class="table-container">
+                <table id="payments-table">
+                    <thead>
+                        <tr>
+                            <th>Invoice No.</th>
+                            <th>Customer</th>
+                            <th>Date</th>
+                            <th>Amount (₹)</th>
+                            <th>Paid (₹)</th>
+                            <th>Balance (₹)</th>
+                            <th>Due Date</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Filled by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Bills Section -->
+        <section id="bills" class="section">
+            <div class="section-header">
+                <h2>Generated Bills</h2>
+                <button class="btn" id="refresh-bills"><i class="fas fa-sync-alt"></i> Refresh</button>
+            </div>
+            
+            <div class="table-container">
+                <table id="bills-table">
+                    <thead>
+                        <tr>
+                            <th>Bill No.</th>
+                            <th>Date</th>
+                            <th>Customer</th>
+                            <th>Total (₹)</th>
+                            <th>Paid (₹)</th>
+                            <th>Pending (₹)</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Filled by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">Product added successfully!</div>
+
+    <!-- Payment Modal -->
+    <div class="modal" id="payment-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Record Payment</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="form-group">
+                <label for="payment-bill-no">Bill No.</label>
+                <input type="text" id="payment-bill-no" readonly>
+            </div>
+            <div class="form-group">
+                <label for="payment-customer">Customer</label>
+                <input type="text" id="payment-customer" readonly>
+            </div>
+            <div class="form-group">
+                <label for="payment-total">Total Amount (₹)</label>
+                <input type="text" id="payment-total" readonly>
+            </div>
+            <div class="form-group">
+                <label for="payment-paid">Already Paid (₹)</label>
+                <input type="text" id="payment-paid" readonly>
+            </div>
+            <div class="form-group">
+                <label for="payment-pending">Pending (₹)</label>
+                <input type="text" id="payment-pending" readonly>
+            </div>
+            <div class="form-group">
+                <label for="payment-amount">Payment Amount (₹) *</label>
+                <input type="number" id="payment-amount" placeholder="Enter payment amount" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="payment-date">Payment Date *</label>
+                <input type="date" id="payment-date" required>
+            </div>
+            <div class="form-group">
+                <label for="payment-notes">Notes</label>
+                <textarea id="payment-notes" placeholder="Payment reference, mode, etc." rows="3"></textarea>
+            </div>
+            <div class="flex-center mt-20">
+                <button class="btn btn-success" id="save-payment"><i class="fas fa-check"></i> Save Payment</button>
+                <button class="btn btn-danger" id="cancel-payment"><i class="fas fa-times"></i> Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Chathur Traders</h3>
+                    <p>Premium quality spices sourced directly from farms. Providing authentic flavors to kitchens worldwide since 2005.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Spice Market, Kochi, Kerala</li>
+                        <li><i class="fas fa-phone"></i> +91 98765 43210</li>
+                        <li><i class="fas fa-envelope"></i> info@chathurtraders.com</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Business Hours</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-clock"></i> Mon-Fri: 9:00 AM - 6:00 PM</li>
+                        <li><i class="fas fa-clock"></i> Sat: 10:00 AM - 4:00 PM</li>
+                        <li><i class="fas fa-clock"></i> Sun: Closed</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Chathur Traders. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./script.js"></script>
+</body>
+</html>
