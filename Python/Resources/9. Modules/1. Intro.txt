@@ -1,0 +1,27 @@
+Modules in Python
+=================
+
+What is Module?
+--------------
+
+Python modules are same as a code library.
+It's a file containing a set of functions you want to include in your application.
+It can define functions, classes and variables.
+It can also include executable code.
+Grouping related code into a module makes it easier to understand and use.
+It also makes the code logically organized.
+
+
+Creating a Module
+-----------------
+
+To create a module, save the code in a file with a .py extension.
+For example, create a file named "Module.py" and save the code in it.
+
+
+Importing a Module
+------------------
+
+To import a module, use the import keyword followed by the module name.
+For example, to import the "Module" module, you would write "import Module".
+

@@ -1,0 +1,25 @@
+Introduction to Data Types in Python
+
+In Python, data types define the type of value a variable can hold. 
+Python is dynamically typed, meaning variables do not need explicit type declarations; the type is assigned automatically based on the value. 
+Different data types help in handling various kinds of data efficiently.
+
+Among the commonly used data types are:
+
+List → An ordered, mutable collection that allows duplicate values. Lists support indexing, slicing, and various operations like appending and removing elements.
+
+Tuple → An ordered, immutable collection that also allows duplicates. Tuples are faster than lists and are often used when data should remain unchanged.
+
+Dictionary → An unordered, mutable collection that stores data in key-value pairs. Keys must be unique and immutable, making dictionaries efficient for lookups and data mapping.
+
+Set → An unordered, mutable collection of unique elements. Sets do not allow duplicates and are useful for mathematical operations like union and intersection.
+
+String → A sequence of characters used to store and manipulate text. Strings are immutable and support indexing, slicing, and various built-in methods for text processing.
+
+Numbers → Python supports multiple numeric types:
+
+1. Integer (int) → Whole numbers
+
+2. Floating-point (float) → Decimal numbers
+
+3. Complex (complex) → Numbers with real and imaginary parts

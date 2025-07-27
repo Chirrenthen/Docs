@@ -1,0 +1,24 @@
+OOPS (Object-Oriented Programming System) is a programming paradigm that organizes software design around objects rather than functions and logic.
+Objects represent real-world entities and encapsulate data (attributes) and behavior (methods).
+
+The main concepts of OOP include:
+
+- **Classes**: 
+ A class is a blueprint or template from which objects are created. 
+
+- **Objects**:
+ An object is an instance of a class.
+
+- **Inheritance**: 
+ Inheritance is the process by which one class can inherit the properties and behavior of another class.
+
+- **Polymorphism**:
+ Polymorphism is the ability of an object to take on multiple forms.
+
+- **Abstraction**:
+ Abstraction is the process of defining an interface for an object without revealing the implementation details.
+
+- **Encapsulation**:
+ Encapsulation is the process of combining data and methods that operate on that data into a single unit. This helps to protect the data from outside interference and misuse. Encapsulation also helps to reduce complexity by hiding the implementation details of an object from the outside world.
+
+
